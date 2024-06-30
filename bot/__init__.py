@@ -74,10 +74,10 @@ download_dir = r'./musik'
 
 api_id = '2374504'
 api_hash = '2ea965cd0674f1663ec291313edcd333'
-bot_token = '6836150963:AAFIZQcYf6_ak2smcnMoJna2xiBkw1UldhU'
+bot_token = '7024217904:AAGCLUMBpMssYJg49K1csnEcpaKT6J0bpUE'
 
 # Create the client and connect to Telegram
-app = Client("nekomm", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
+app = Client("nekommuu", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
 
 async def send_error_message(app, error):
     error_message = f"An error occurred:\n\n{traceback.format_exc()[:4096]}..." if len(traceback.format_exc()) > 4096 else traceback.format_exc()
