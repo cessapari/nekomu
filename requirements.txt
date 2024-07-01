@@ -20,3 +20,4 @@ pillow
 moviepy
 azapi
 tiktok-downloader
+tgcrypto
