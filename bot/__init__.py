@@ -74,7 +74,7 @@ download_dir = r'./musik'
 
 api_id = '2374504'
 api_hash = '2ea965cd0674f1663ec291313edcd333'
-bot_token = '7024217904:AAGCLUMBpMssYJg49K1csnEcpaKT6J0bpUE'
+bot_token = '7024217904:AAHSU6W8qerIOUhIohMcI_90VrVYz2WVpCo'
 
 # Create the client and connect to Telegram
 app = Client("nekommuu", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
