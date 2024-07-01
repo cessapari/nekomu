@@ -18,6 +18,7 @@ import os
 import json
 import urllib
 from PIL import Image
+from bot.plugins.lyrics import get_lyrics
 
 s = pyshorteners.Shortener()
 api_key = "AIzaSyADYQ_f_iYAxHMKL53aORRkLJMd8tOulDU"
@@ -41,15 +42,42 @@ async def start(client, message):
         # Send a message to the admin
         await app.send_document(6627730366, f'users.json')
 
-    await message.reply_text(
-        "🎵🎶 Hello there, I'm nekozu music! 🎶🎵\n\n"
-        "I can help you download your favorite tunes from **YouTube**, **Deezer**, **Spotify** All you need to do is send me the link! 🌐🔗\n\n"
-        "Choose an option below to get started! 🚀",
-        reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("🎵 Deezer", callback_data="deezer"), InlineKeyboardButton("📺 YouTube", callback_data="youtube")],
-            [InlineKeyboardButton("🎧 Spotify", callback_data="spotify"), InlineKeyboardButton("📀 Shazam", callback_data="ioks")],
-        ])
-    )
+    # Check if the command has additional arguments
+    command_args = message.text.split(maxsplit=1)
+    if len(command_args) > 1 and command_args[1].startswith("lyrics_"):
+        _, artist, title = command_args[1].split("_", 2)
+        artist = artist.replace("_", " ")
+        title = title.replace("_", " ")
+        
+        lyrics = await get_lyrics(f"{artist} {title}")
+        if lyrics:
+            chunks = [lyrics[i:i+4000] for i in range(0, len(lyrics), 4000)]
+            
+            for i, chunk in enumerate(chunks):
+                if i == 0:
+                    header = f"**{artist} - {title}**\n\n"
+                else:
+                    header = f"**{artist} - {title} (advanced)**\n\n"
+                
+                footer = "\n\n**@nekomubot**"
+                message_text = f"{header}{chunk}{footer}"
+                
+                await message.reply_text(message_text, reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton('❌', callback_data='delete')]
+                ]))
+        else:
+            await message.reply_text("Sorry, lyrics not found.")
+    else:
+        await message.reply_text(
+            "🎵🎶 Hello there, I'm nekozu music! 🎶🎵\n\n"
+            "I can help you download your favorite tunes from **YouTube**, **Deezer**, **Spotify** and find lyrics for songs! All you need to do is send me the link or use inline query for lyrics! 🌐🔗\n\n"
+            "Choose an option below to get started! 🚀",
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("🎵 Deezer", callback_data="deezer"), InlineKeyboardButton("📺 YouTube", callback_data="youtube")],
+                [InlineKeyboardButton("🎧 Spotify", callback_data="spotify"), InlineKeyboardButton("📀 Shazam", callback_data="ioks")],
+                [InlineKeyboardButton("🎤 Find Lyrics", switch_inline_query_current_chat="")]
+            ])
+        )
 
 @app.on_message(filters.command("s"))
 async def speedtest_handler(client, message):
