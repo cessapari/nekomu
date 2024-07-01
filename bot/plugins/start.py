@@ -164,16 +164,11 @@ async def upgrade_topremium(client, callback_query):
                     "4. Search YT music up to 5 hour duration.\n"
                     "5. Search limit for YT music: max 50 from 20.\n"
                     "6. Auto-set audio quality to FLAC. for youtube search\n\n"
-                    "Plans:\n"
-                    "1. 1 month = $1\n"
-                    "2. 1 Year = $10\n\n"
-                    "Pay at our ko-fi shop link. After payment, wait 5 min - 1 hour to become a premium user.\n"
-                    "For payment guide, see photo. Fill your user id in the message. Get your id with /info command.\n"
+                    "Pay at our ko-fi shop link. After payment, there will be have instructions to redeem the code\n"
                     "Thank you for your support!, if after 1 day not being a premium. contact me @farihdzaky",
         ),
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("Pay For 1 Month", url="https://ko-fi.com/s/2993b6ab0b")],
-            [InlineKeyboardButton("Pay For 1 Month", url="https://ko-fi.com/s/7108bcad50")]
+            [InlineKeyboardButton("Buy Premium", url="https://ko-fi.com/s/7108bcad50")]
         ])
     )
 
@@ -189,15 +184,10 @@ async def premium_command(client, message):
                 "4. Search YT music up to 5 hour duration.\n"
                 "5. Search limit for YT music: max 50 from 20.\n"
                 "6. Auto-set audio quality to FLAC. for youtube search\n\n"
-                "Plans:\n"
-                "1. 1 month = $1\n"
-                "2. 1 Year = $10\n\n"
-                "Pay at our ko-fi shop link. After payment, wait 5 min - 1 day to become a premium user.\n"
-                "For payment guide, see photo. Fill your user id in the message. Get your id with /info command.\n"
+                "Pay at our ko-fi shop link. After payment, there will be have instructions to redeem the code\n"
                 "Thank you for your support!, if after 1 day not being a premium. contact me @farihdzaky",
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("Pay For 1 Month", url="https://ko-fi.com/s/2993b6ab0b")],
-            [InlineKeyboardButton("Pay For 1 Year", url="https://ko-fi.com/s/7108bcad50")]
+            [InlineKeyboardButton("Buy Premium", url="https://ko-fi.com/s/7108bcad50")]
         ])
     )
 

@@ -289,9 +289,3 @@ def create_txt_file(artist, title, lyrics):
 
 
 
-
-
-
-
-
-
