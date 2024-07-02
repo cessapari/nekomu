@@ -284,8 +284,3 @@ def create_txt_file(artist, title, lyrics):
         file.write(txt_content)
     
     return filename
-
-
-
-
-
